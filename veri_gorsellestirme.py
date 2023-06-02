@@ -189,13 +189,56 @@ df["size"].value_counts()
 #sns.boxplot(x="day", y="total_bill", hue="sex", data=df)
 
 #%%
+#TODO Violin Grafik (5.bölüm)_______________
+import seaborn as sns
+tips = sns.load_dataset("tips")
+df = tips.copy()
 
+#sns.catplot(y="total_bill", kind="violin", data=df)
 
+#TODO Çaprazlamalar
+#sns.catplot(x="day", y="total_bill", kind="violin", data=df)
+#sns.catplot(x="day", y="total_bill", hue="sex", kind="violin", data=df)
 
+#%%
+#TODO Korelasyon Grafikleri (6.bölüm)_______________
 
+#TODO Scatterplot
+import seaborn as sns
+tips = sns.load_dataset("tips")
+df = tips.copy()
 
+#sns.scatterplot(x="total_bill", y="tip", data=df)
 
+#TODO Çaprazlamalar
+#sns.scatterplot(x="total_bill", y="tip", hue="time", data=df)
+#sns.scatterplot(x="total_bill", y="tip", hue="time", style="time", data=df)
+#sns.scatterplot(x="total_bill", y="tip", hue="day", style="day", data=df)
+#sns.scatterplot(x="total_bill", y="tip", hue="day", style="time", data=df)
+#sns.scatterplot(x="total_bill", y="tip", style="size", data=df)
+#sns.scatterplot(x="total_bill", y="tip", hue="size", style="size", data=df)
 
+#TODO Doğrusal İlişkinin Gösterilmesi
+#sns.lmplot(x="total_bill", y="tip", data=df)
+#sns.lmplot(x="total_bill", y="tip", hue="smoker", data=df)
+#sns.lmplot(x="total_bill", y="tip", hue="smoker", col="time", data=df)
+#sns.lmplot(x="total_bill", y="tip", hue="smoker", col="time", row="sex", data=df)
+
+#TODO Scatterplot Matrisi
+iris = sns.load_dataset("iris")
+df = iris.copy()
+df.head()
+df.info()
+df.dtypes
+df.shape
+df.describe()
+df.describe().T
+
+#sns.pairplot(df)
+#sns.pairplot(df, hue="species")
+#sns.pairplot(df, hue="species", markers=["o","s","D"])
+#sns.pairplot(df, kind="reg")
+sns.pairplot(df, kind="reg", hue="species")
 
 
 
