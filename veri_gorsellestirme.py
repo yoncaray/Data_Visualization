@@ -240,6 +240,102 @@ df.describe().T
 #sns.pairplot(df, kind="reg")
 sns.pairplot(df, kind="reg", hue="species")
 
+#%%
+#TODO Isı Haritası (Heat Map)
+import seaborn as sns
+flights = sns.load_dataset("flights")
+df = flights.copy()
+df.head()
+df.shape
+df["passengers"].describe()
+
+df = df.pivot("month", "year", "passengers")
+df
+
+sns.heatmap(df)
+sns.heatmap(df, annot = True, fmt = "d")
+sns.heatmap(df, annot = True, fmt = "d", linewidths = .5)
+sns.heatmap(df, annot = True, fmt = "d", linewidths = .5, cbar = False)
+
+#%%
+#TODO Çizgi Grafik
+import seaborn as sns
+fmri = sns.load_dataset("fmri")
+df = fmri.copy()
+df.head()
+df.shape
+df["timepoint"].describe()
+df["signal"].describe()
+df.groupby("timepoint")["signal"].count()
+df.groupby("signal")["timepoint"].count()
+df.groupby("signal").count()
+df.groupby("timepoint")["signal"].describe()
+
+#TODO Grafikler
+#sns.lineplot(x="timepoint", y="signal", data=df)
+#sns.lineplot(x="timepoint", y="signal", hue="event", data=df)
+#sns.lineplot(x="timepoint", y="signal", hue="event", style="event", data=df)
+sns.lineplot(x="timepoint", 
+             y="signal", 
+             hue="event", 
+             style="event", 
+             markers=True, dashes=False,
+             data=df)
+sns.lineplot(x="timepoint", 
+             y="signal", 
+             hue="region", 
+             style="event", 
+             data=df)
+
+#%%
+#TODO Basit Zaman Serisi Grafiği
+import pandas_datareader as pr
+df = pr.get_data_yahoo("AAPL", start="2016-01-01", end="2019-08-25")
+df.head()
+df.shape
+kapanis = df["Close"]
+kapanis.head()
+kapanis.plot()
+kapanis.index 
+kapanis.index = pd.DatetimeIndex(kapanis.index)
+kapanis.index
+kapanis.plot()
+
+#%%
+"""
+DAĞILIM GRAFİKLERİ
+Kategorik değişkenler için:
+    Sütun grafik (Bar plot)
+Sayısal değişkenler için:
+    Histogram
+    Kutu grafik (Box plot)
+    Violin
+
+KORELASYON GRAFİKLERİ
+
+ÇİZGİ GRAFİK
+
+BASİT ZAMAN SERİSİ
+"""
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 
